@@ -11,6 +11,7 @@ import {
 } from "../types";
 
 import clienteAxios from "../config/axios";
+import apikey from '../apikey.js'
 
 export function loadMoviesAction() {
   return async (dispatch, getState) => {
@@ -20,7 +21,7 @@ export function loadMoviesAction() {
         //Peticion a TMDB
         const { page } = getState().movies;
         const response = await clienteAxios(
-          `discover/movie?api_key=cf03556f0305bb9a2b866ce9b02c0084&page=${page}`
+          `discover/movie?api_key=${apikey}&page=${page}`
         );
         dispatch(loadMoviesDone(response.data.results));
       } catch (error) {
@@ -72,7 +73,7 @@ export function loadGenresAction() {
     try {
       //Peticion a TMDB
       const response = await clienteAxios(
-        `genre/movie/list?api_key=cf03556f0305bb9a2b866ce9b02c0084&language=en-US`
+        `genre/movie/list?api_key=${apikey}&language=en-US`
       );
       dispatch(loadGenresDone(response.data.genres));
     } catch (error) {
