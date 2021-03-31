@@ -45,9 +45,7 @@ const MovieList = () => {
 
     const handleIntersection = async (e) => {
       if (e[0].isIntersecting) {
-        if(shownList !== 'search'){
-          await dispatch(loadMoviesAction());
-        }
+        await dispatch(loadMoviesAction());
       }
     };
     const observer = new IntersectionObserver(handleIntersection);
@@ -128,11 +126,26 @@ const MovieList = () => {
     )
   }
 
+  const listTitle = () => {
+    if(shownList === 'all'){
+      return 'Todas las peliculas'
+    } else if(shownList === 'mostValued'){
+      return 'Peliculas más valoradas'
+    } else if(shownList === 'leastValued'){
+      return 'Peliculas menos valoradas'
+    } else if(shownList === 'search' && searchList.length > 0){
+      return 'Resultados de busqueda'
+    } else {
+      return ''
+    }
+  }
+  
+
   return (
     <>
     <Modal/>
       <div>
-        <h2>Todas las peliculas</h2>
+        <h2>{listTitle()}</h2>
         <MovieBox>
           {shownList === 'all' ?
           <AllMovies />

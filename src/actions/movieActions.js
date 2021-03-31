@@ -14,10 +14,14 @@ import {
 } from "../types";
 
 import clienteAxios from "../config/axios";
-import apikey from '../apikey.js'
+import apikey from "../apikey.js";
 
 export function loadMoviesAction() {
   return async (dispatch, getState) => {
+    const { shownList } = getState().movies;
+    if (shownList === "search") {
+      return;
+    }
     dispatch(loadMovies());
     setTimeout(async () => {
       try {
@@ -113,11 +117,11 @@ const changeList = (listName) => ({
 
 export function searchMoviesAction(search) {
   return async (dispatch) => {
-    dispatch(searchMovies(search));   
+    dispatch(searchMovies(search));
     setTimeout(async () => {
       try {
         //Peticion a TMDB
-        
+
         const response = await clienteAxios(
           `search/multi?api_key=${apikey}&query=${search}&page=1`
         );
@@ -132,15 +136,15 @@ export function searchMoviesAction(search) {
 
 const searchMovies = (search) => ({
   type: SEARCH_MOVIES,
-  payload: search
-})
+  payload: search,
+});
 
 const searchMoviesDone = (response) => ({
   type: SEARCH_MOVIES_DONE,
-  payload: response
-})
+  payload: response,
+});
 
 const searchMoviesError = (state) => ({
   type: SEARCH_MOVIES_ERROR,
-  payload: true
-})
+  payload: true,
+});
