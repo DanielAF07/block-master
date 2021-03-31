@@ -1,3 +1,15 @@
+:root {
+  --black: rgba(0,0,0,1);
+  --bg: rgba(15,14,23,1);
+  --primary: rgba(254,217,65,1);
+  --gray: rgba(167,169,190,1);
+  --white: rgba(255,255,254,1)
+}
+
+* {
+  font-family: Montserrat;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +17,57 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.hwrapper {
+  max-inline-size: 1200px;
+  padding-left: 83px;
+  padding-right: 83px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 800;
+  color: var(--white);
+  font-size: 46px;
+  line-height: 56px;
+  letter-spacing: 1%;
+}
+
+h2 {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 48px;
+  line-height: 58px;
+  letter-spacing: -0.5%;
+}
+
+h3 {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 37px;
+  line-height: 31.5px;
+}
+
+h4 {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 28px;
+  line-height: 34.13px;
+}
+
+h5 {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 25px;
+  line-height: 30.48px;
+  letter-spacing: 1%;
 }
