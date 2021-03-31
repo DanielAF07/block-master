@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Block-Master
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project developed with react and redux.
 
 ## Available Scripts
 
