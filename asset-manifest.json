@@ -1,17 +1,18 @@
 {
   "files": {
     "main.css": "/block-master/static/css/main.cc2ab9c1.chunk.css",
-    "main.js": "/block-master/static/js/main.900502d5.chunk.js",
-    "main.js.map": "/block-master/static/js/main.900502d5.chunk.js.map",
-    "runtime-main.js": "/block-master/static/js/runtime-main.1ade3578.js",
-    "runtime-main.js.map": "/block-master/static/js/runtime-main.1ade3578.js.map",
-    "static/js/2.00ce192d.chunk.js": "/block-master/static/js/2.00ce192d.chunk.js",
-    "static/js/2.00ce192d.chunk.js.map": "/block-master/static/js/2.00ce192d.chunk.js.map",
-    "static/js/3.5059b088.chunk.js": "/block-master/static/js/3.5059b088.chunk.js",
-    "static/js/3.5059b088.chunk.js.map": "/block-master/static/js/3.5059b088.chunk.js.map",
+    "main.js": "/block-master/static/js/main.c5f4b958.chunk.js",
+    "main.js.map": "/block-master/static/js/main.c5f4b958.chunk.js.map",
+    "runtime-main.js": "/block-master/static/js/runtime-main.b9484d68.js",
+    "runtime-main.js.map": "/block-master/static/js/runtime-main.b9484d68.js.map",
+    "static/js/2.cf3ec568.chunk.js": "/block-master/static/js/2.cf3ec568.chunk.js",
+    "static/js/2.cf3ec568.chunk.js.map": "/block-master/static/js/2.cf3ec568.chunk.js.map",
+    "static/js/3.c053c700.chunk.js": "/block-master/static/js/3.c053c700.chunk.js",
+    "static/js/3.c053c700.chunk.js.map": "/block-master/static/js/3.c053c700.chunk.js.map",
     "index.html": "/block-master/index.html",
     "static/css/main.cc2ab9c1.chunk.css.map": "/block-master/static/css/main.cc2ab9c1.chunk.css.map",
-    "static/js/2.00ce192d.chunk.js.LICENSE.txt": "/block-master/static/js/2.00ce192d.chunk.js.LICENSE.txt",
+    "static/js/2.cf3ec568.chunk.js.LICENSE.txt": "/block-master/static/js/2.cf3ec568.chunk.js.LICENSE.txt",
+    "static/media/Stuck at Home Searching.ee130549.png": "/block-master/static/media/Stuck at Home Searching.ee130549.png",
     "static/media/cross.02c30c04.svg": "/block-master/static/media/cross.02c30c04.svg",
     "static/media/mulan.68eecc2c.png": "/block-master/static/media/mulan.68eecc2c.png",
     "static/media/play.b4347e91.svg": "/block-master/static/media/play.b4347e91.svg",
@@ -22,9 +23,9 @@
     "static/media/unidos.73c1783f.png": "/block-master/static/media/unidos.73c1783f.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1ade3578.js",
-    "static/js/2.00ce192d.chunk.js",
+    "static/js/runtime-main.b9484d68.js",
+    "static/js/2.cf3ec568.chunk.js",
     "static/css/main.cc2ab9c1.chunk.css",
-    "static/js/main.900502d5.chunk.js"
+    "static/js/main.c5f4b958.chunk.js"
   ]
 }
