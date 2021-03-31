@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled'
 import searchIcon from '../../assets/search.svg'
 
-const TextInput = styled.div`
+//Redux
+import { useDispatch } from 'react-redux'
+import { changeListAction, searchMoviesAction } from '../../actions/movieActions';
+
+const TextInput = styled.form`
   height: auto;
   display: flex;
   align-items: center;
@@ -37,10 +41,38 @@ const Button = styled.button`
 `
 
 const InputText = () => {
+
+  const dispatch = useDispatch()
+
+  const [search, setSearch] = useState('')
+
+  const handleChange = (e) => {
+    setSearch(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if(search.trim() === ''){
+      dispatch(changeListAction('all'))
+      return
+    }
+    dispatch(searchMoviesAction(search))
+
+  }
   return (
-    <TextInput>
-      <Input id="searchMovie" type="text" placeholder="Busca tu película favorita"/>
-      <Button><i><img src={searchIcon} alt="Search Icon"/></i></Button>
+    <TextInput
+      onSubmit={handleSubmit}
+    >
+      <Input 
+        id="searchMovie"
+        type="text"
+        placeholder="Busca tu película favorita"
+        value={search}
+        onChange={handleChange}
+      />
+      <Button
+        type="submit"
+      ><i><img src={searchIcon} alt="Search Icon"/></i></Button>
     </TextInput>
   );
 };

@@ -1,11 +1,13 @@
-import { CHANGE_LIST, DESELECT_MOVIE, LOAD_GENRES, LOAD_GENRES_DONE, LOAD_GENRES_ERROR, LOAD_MOVIES, LOAD_MOVIES_DONE, LOAD_MOVIES_ERROR, SELECT_MOVIE } from '../types'
+import { CHANGE_LIST, DESELECT_MOVIE, LOAD_GENRES, LOAD_GENRES_DONE, LOAD_GENRES_ERROR, LOAD_MOVIES, LOAD_MOVIES_DONE, LOAD_MOVIES_ERROR, SEARCH_MOVIES, SEARCH_MOVIES_DONE, SEARCH_MOVIES_ERROR, SELECT_MOVIE } from '../types'
 
 const initialState = {
   movies: [],
+  searchList: [],
   genres: [],
   shownList: 'all',
   loadingMovies: false,
   selectedMovie: {title: '', release_date: '', genre_ids: [], poster_path: '/mzOHg7Q5q9yUmY0b9Esu8Qe6Nnm.jpg'},
+  search: '',
   showModal: false,
   error: false,
   page: 1
@@ -62,6 +64,26 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         shownList: action.payload,
+      }
+    case SEARCH_MOVIES:
+      return {
+        ...state,
+        shownList: 'search',
+        searchList: [],
+        search: action.payload,
+        loadingMovies: true
+      }
+    case SEARCH_MOVIES_DONE:
+      return {
+        ...state,
+        searchList: action.payload,
+        loadingMovies: false
+      }
+    case SEARCH_MOVIES_ERROR:
+      return {
+        ...state,
+        searchList: [],
+        loadingMovies: false
       }
     default:
       return state

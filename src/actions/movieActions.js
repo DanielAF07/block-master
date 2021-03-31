@@ -7,6 +7,9 @@ import {
   LOAD_MOVIES,
   LOAD_MOVIES_DONE,
   LOAD_MOVIES_ERROR,
+  SEARCH_MOVIES,
+  SEARCH_MOVIES_DONE,
+  SEARCH_MOVIES_ERROR,
   SELECT_MOVIE,
 } from "../types";
 
@@ -107,3 +110,37 @@ const changeList = (listName) => ({
   type: CHANGE_LIST,
   payload: listName,
 });
+
+export function searchMoviesAction(search) {
+  return async (dispatch) => {
+    dispatch(searchMovies(search));   
+    setTimeout(async () => {
+      try {
+        //Peticion a TMDB
+        
+        const response = await clienteAxios(
+          `search/multi?api_key=${apikey}&query=${search}&page=1`
+        );
+        dispatch(searchMoviesDone(response.data.results));
+      } catch (error) {
+        console.log(error);
+        dispatch(searchMoviesError(true));
+      }
+    }, 1500);
+  };
+}
+
+const searchMovies = (search) => ({
+  type: SEARCH_MOVIES,
+  payload: search
+})
+
+const searchMoviesDone = (response) => ({
+  type: SEARCH_MOVIES_DONE,
+  payload: response
+})
+
+const searchMoviesError = (state) => ({
+  type: SEARCH_MOVIES_ERROR,
+  payload: true
+})

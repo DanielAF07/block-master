@@ -6,7 +6,6 @@ import { ReactComponent as PlayIcon } from "../../assets/play.svg";
 import { ReactComponent as PlusIcon } from "../../assets/plus.svg";
 import { ReactComponent as CrossIcon } from "../../assets/cross.svg";
 
-
 import { useDispatch, useSelector } from "react-redux";
 import { deselectMovieAction } from "../../actions/movieActions";
 
@@ -86,14 +85,13 @@ const CloseIcon = styled.div`
   right: 0;
   z-index: 11;
   cursor: pointer;
-`
-
+`;
 
 const Modal = () => {
   const dispatch = useDispatch();
   const selectedMovie = useSelector((state) => state.movies.selectedMovie);
   const genres = useSelector((state) => state.movies.genres);
-  const showModal = useSelector(state => state.movies.showModal);
+  const showModal = useSelector((state) => state.movies.showModal);
 
   const handleClick = (e) => {
     if (e.target.getAttribute("id") === "modal-bg") {
@@ -103,32 +101,48 @@ const Modal = () => {
 
   const handleCloseClick = (e) => {
     dispatch(deselectMovieAction());
-  }
+  };
+
+  console.log(selectedMovie);
 
   return (
-    <Background className={`${showModal ? 'show': null}`} id="modal-bg" onClick={handleClick}>
+    <Background
+      className={`${showModal ? "show" : null}`}
+      id="modal-bg"
+      onClick={handleClick}
+    >
       <Container>
         <CloseIcon onClick={handleCloseClick}>
-          <CrossIcon id="close"/>
+          <CrossIcon id="close" />
         </CloseIcon>
         <Cover>
           <MovieCover size="big" movie={selectedMovie} />
         </Cover>
         <MovieInfo>
-          <h1>{selectedMovie.title}</h1>
+          <h1>{selectedMovie.title ? selectedMovie.title : selectedMovie.name}</h1>
           <Overview>{selectedMovie.overview}</Overview>
           <Data>
-            <li>{selectedMovie.release_date.substring(0, 4)}</li>
-            <li>
-              {selectedMovie.genre_ids.map((gen, i) => {
-                if (i === 0) {
-                  return genres.find((genre) => genre.id === gen).name;
-                } else if (i > 0) {
-                  return " / " + genres.find((genre) => genre.id === gen).name;
-                }
-                return null;
-              })}
-            </li>
+            {selectedMovie.release_date ? (
+              <li>{selectedMovie.release_date.substring(0, 4)}</li>
+            ) : null}
+            {selectedMovie.genre_ids.length > 0 ? (
+              <li>
+                {selectedMovie.genre_ids.map((gen, i) => {
+                  if(!genres.find((genre) => genre.id === gen)){
+                    return null
+                  }
+                  if (i === 0) {
+                    return genres.find((genre) => genre.id === gen).name;
+                  } else if (i > 0) {
+                    return (
+                      " / " + genres.find((genre) => genre.id === gen).name
+                    );
+                  }
+                  return null;
+                })}
+              </li>
+            ) : null}
+
             {/* <li>1h 40m</li> */}
           </Data>
           <Actions>

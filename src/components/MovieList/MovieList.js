@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 import MovieCover from "./MovieCover";
 import Spinner from "../misc/Spinner";
 import Modal from '../Modal/Modal'
+import notFoundImage from '../../assets/Stuck at Home Searching.png'
+
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadMoviesAction, loadGenresAction } from "../../actions/movieActions";
@@ -21,18 +23,31 @@ const MovieBox = styled.div`
   justify-content: space-between;
 `;
 
+const NoResults = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+`
+
 const MovieList = () => {
   const dispatch = useDispatch();
 
   const loadingMovies = useSelector((state) => state.movies.loadingMovies);
   const showModal = useSelector( state => state.movies.showModal)
   const shownList = useSelector( state => state.movies.shownList)
+  const movies = useSelector((state) => state.movies.movies);
+  const searchList = useSelector( state => state.movies.searchList)
+  const search = useSelector( state => state.movies.search)
 
   useEffect(() => {
     dispatch(loadGenresAction())
+
     const handleIntersection = async (e) => {
       if (e[0].isIntersecting) {
-        await dispatch(loadMoviesAction());
+        if(shownList !== 'search'){
+          await dispatch(loadMoviesAction());
+        }
       }
     };
     const observer = new IntersectionObserver(handleIntersection);
@@ -48,7 +63,7 @@ const MovieList = () => {
     }
   }, [showModal]);
 
-  const movies = useSelector((state) => state.movies.movies);
+
 
   const AllMovies = () => {
     return movies.map((movie) => {
@@ -94,15 +109,36 @@ const MovieList = () => {
     })
   }
 
+  const SearchList = () => {
+    return searchList.map((movie) => {
+      if (movie.poster_path !== null) {
+        return <MovieCover key={movie.id} movie={movie} />;
+      } else {
+        return null;
+      }
+    })
+  }
+
+  const NotFound = () => {
+    return (
+      <NoResults>
+        <img src={notFoundImage} alt=""/>
+        <h3>{`No se encontraron resultados para "${search}"`}</h3>
+      </NoResults>
+    )
+  }
+
   return (
     <>
     <Modal/>
-    {/* {selectedMovie !== null ? <Modal /> : null} */}
       <div>
         <h2>Todas las peliculas</h2>
         <MovieBox>
-            {shownList === 'all' ? <AllMovies /> : shownList === 'mostValued' ? <MostValued /> : <LeastValued />}
-          <div id="intersector"></div>
+          {shownList === 'all' ?
+          <AllMovies />
+          : shownList === 'mostValued' ? <MostValued /> : shownList === 'leastValued' ? <LeastValued /> : <SearchList />}
+          {shownList === 'search' && loadingMovies === false && searchList.length === 0 ? <NotFound /> : null}  
+          <div id="intersector"> </div>
         </MovieBox>
       </div>
       {loadingMovies ? <Spinner /> : null}

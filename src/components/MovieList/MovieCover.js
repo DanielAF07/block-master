@@ -48,6 +48,10 @@ const MovieCover = ({movie, size}) => {
     }
   }
 
+  if(!movie.poster_path) {
+    return null
+  }
+
   return (
     <Cover
       onClick={handleClick}

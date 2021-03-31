@@ -35,7 +35,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
   const shownList = useSelector( state => state.movies.shownList )
-
+  
   const handleClick = (e) => {
     dispatch(changeListAction(e.target.getAttribute('value')))
   }
