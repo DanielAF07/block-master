@@ -14,7 +14,8 @@ import {
 } from "../types";
 
 import clienteAxios from "../config/axios";
-import apikey from "../apikey.js";
+
+const apikey = process.env.APIKEY
 
 export function loadMoviesAction() {
   return async (dispatch, getState) => {
